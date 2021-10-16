@@ -5,7 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import { NavbarComponent } from './components';
-import { Home } from './pages';
+import { Home, Sukses } from './pages';
 
 export default class App extends Component {
   render() {
@@ -14,7 +14,8 @@ export default class App extends Component {
         <NavbarComponent />
         <main>
           <Switch>
-            <Route path="/" component={Home} />
+            <Route path="/" component={Home} exact />
+            <Route path="/sukses" component={Sukses} exact />
           </Switch>
         </main>
       </BrowserRouter>
