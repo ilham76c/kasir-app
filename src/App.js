@@ -4,6 +4,7 @@ import { Row, Col, Container } from 'react-bootstrap';
 import { Hasil, ListCategories, NavbarComponent, Menus } from './components';
 import { API_URL } from './utils/constant';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export default class App extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ export default class App extends Component {
     this.state = {
        menus: [],
        categoryYangDipilih: 'Makanan',
+       keranjangs: [],
     }
   }
 
@@ -42,6 +44,58 @@ export default class App extends Component {
       });
   }
 
+  masukKeranjang = (value) => {
+
+    axios.get(`${API_URL}/keranjangs?product.id=${value.id}`)
+      .then(res => {
+        if (res.data.length === 0) {
+          const keranjang = {
+            jumlah: 1,
+            total_harga: value.harga,
+            product: value,
+          }
+          axios.post(`${API_URL}/keranjangs`, keranjang)
+            .then(res => {
+              swal({
+                title: "Sukses",
+                text: keranjang.product.nama+" sukses masuk keranjang",
+                icon: "success",
+                button: false,
+                timer: 1500,
+              });
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        } else {
+          const keranjang = {
+            jumlah: res.data[0].jumlah + 1,
+            total_harga: res.data[0].total_harga + value.harga,
+            product: value,
+          }
+
+          axios.put(`${API_URL}/keranjangs/${res.data[0].id}`, keranjang)
+            .then(res => {
+              swal({
+                title: "Sukses",
+                text: keranjang.product.nama+" sukses masuk keranjang",
+                icon: "success",
+                button: false,
+                timer: 1500,
+              });
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+    
+  }
+
   render() {
     // console.log(this.state.menus);
     const { menus, categoryYangDipilih } = this.state;
@@ -63,6 +117,7 @@ export default class App extends Component {
                     <Menus
                       key={ menu.id }
                       menu={ menu }
+                      masukKeranjang={ this.masukKeranjang }
                     />
                   ))}
                 </Row>
