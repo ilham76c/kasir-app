@@ -142,7 +142,7 @@ export default class Home extends Component {
                 ))}
               </Row>
             </Col>
-            <Hasil keranjangs={ keranjangs } />
+            <Hasil keranjangs={ keranjangs } {...this.props} />
           </Row>
         </Container>
       </div>
