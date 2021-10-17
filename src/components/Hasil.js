@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Col, ListGroup, Badge } from 'react-bootstrap'
 import { numberWithCommas } from '../utils/utils';
+import { TotalBayar } from '../components'
 
 export default class Hasil extends Component {
     render() {
@@ -39,6 +40,7 @@ export default class Hasil extends Component {
                         
                     </ListGroup>
                 }
+                <TotalBayar keranjangs={keranjangs} />
             </Col>
         )
     }
