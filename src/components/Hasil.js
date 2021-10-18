@@ -19,6 +19,8 @@ export default class Hasil extends Component {
         this.setState({
             showModal: true,
             keranjangDetail: menuKeranjang,
+            jumlah: menuKeranjang.jumlah,
+            keterangan: menuKeranjang.keterangan,
         });
     }
 
@@ -27,7 +29,21 @@ export default class Hasil extends Component {
             showModal: false,
         });
     }
+
+    tambah = () => {
+        this.setState({
+            jumlah: this.state.jumlah + 1,
+        });
+    }
     
+    kurang = () => {
+        if (this.state.jumlah > 1) {
+            this.setState({
+                jumlah: this.state.jumlah - 1,
+            });
+        }
+    }
+
     render() {
         const { keranjangs } = this.props;
 
@@ -62,7 +78,12 @@ export default class Hasil extends Component {
                                 </Row>
                             </ListGroup.Item>
                         )) }
-                        <ModalKeranjang handleClose={this.handleClose} {...this.state}/>
+                        <ModalKeranjang 
+                            handleClose={this.handleClose} 
+                            {...this.state}
+                            tambah={this.tambah}
+                            kurang={this.kurang}
+                        />
                     </ListGroup>
                 }
                 <TotalBayar keranjangs={keranjangs} {...this.props} />
