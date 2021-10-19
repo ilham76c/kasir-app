@@ -25,3 +25,11 @@ code {
 .btn-primary {
   background-color: #22668A;
 }
+
+.hasil {
+  height: 45%;
+}
+
+.overflow-auto::-webkit-scrollbar {
+  display: none;
+}
