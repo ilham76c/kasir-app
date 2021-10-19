@@ -27,12 +27,12 @@ const ModalKeranjang = ({showModal, handleClose, keranjangDetail, jumlah, ketera
                         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                             <Form.Label>Jumlah :</Form.Label>
                             <br/>
-                            <Button variant="primary" size="sm" onClick={() => tambah()}>
-                                <FontAwesomeIcon icon={faPlus}/>
-                            </Button>
-                            <strong className="mx-2">{jumlah}</strong>
                             <Button variant="primary" size="sm" onClick={() => kurang()}>
                                 <FontAwesomeIcon icon={faMinus}/>
+                            </Button>
+                            <strong className="mx-2">{jumlah}</strong>
+                            <Button variant="primary" size="sm" onClick={() => tambah()}>
+                                <FontAwesomeIcon icon={faPlus}/>
                             </Button>
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">

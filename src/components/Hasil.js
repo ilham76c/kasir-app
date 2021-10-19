@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Row, Col, ListGroup, Badge } from 'react-bootstrap';
 import { numberWithCommas } from '../utils/utils';
 import { TotalBayar, ModalKeranjang } from '../components';
+import { API_URL } from '../utils/constant';
+import axios from 'axios';
+import swal from 'sweetalert';
 
 export default class Hasil extends Component {
     constructor(props) {
@@ -57,6 +60,27 @@ export default class Hasil extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
 
+        const data = {
+            jumlah:this.state.jumlah,
+            total_harga: this.state.totalHarga,
+            product: this.state.keranjangDetail.product,
+            keterangan: this.state.keterangan,
+          }
+        axios.put(`${API_URL}/keranjangs/${this.state.keranjangDetail.id}`, data)
+            .then(res => {
+              swal({
+                title: "Update Pesanan!",
+                text: "Sukses update pesanan " + data.product.nama,
+                icon: "success",
+                button: false,
+                timer: 1500,
+              });
+            })
+            .catch(error => {
+              console.log(error);
+            });
+
+        this.handleClose();
     }
 
     render() {
