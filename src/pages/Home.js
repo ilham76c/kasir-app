@@ -127,12 +127,12 @@ export default class Home extends Component {
         <Container fluid>
           <Row>
             <ListCategories changeCategory={this.changeCategory} categoryYangDipilih={categoryYangDipilih} />
-            <Col>
+            <Col className="mt-3">
               <h4>
                 <strong>Daftar Product</strong>
               </h4>
               <hr/>
-              <Row>
+              <Row className="overflow-auto menu">
                 { menus && menus.map((menu) => (
                   <Menus
                     key={ menu.id }

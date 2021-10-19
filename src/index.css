@@ -26,8 +26,14 @@ code {
   background-color: #22668A;
 }
 
-.hasil {
-  height: 45%;
+@media only screen and (max-height: 1000px) {
+  .hasil {
+    height: 58vh;
+  }
+
+  .menu {
+    height: 80vh;
+  }
 }
 
 .overflow-auto::-webkit-scrollbar {
