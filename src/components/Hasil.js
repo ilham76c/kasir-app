@@ -83,6 +83,25 @@ export default class Hasil extends Component {
         this.handleClose();
     }
 
+    hapusPesanan = (id) => {
+    
+        axios.delete(`${API_URL}/keranjangs/${id}`)
+            .then(res => {
+              swal({
+                title: "Hapus Pesanan!",
+                text: "Sukses hapus pesanan " + this.state.keranjangDetail.product.nama,
+                icon: "error",
+                button: false,
+                timer: 1500,
+              });
+            })
+            .catch(error => {
+              console.log(error);
+            });
+
+        this.handleClose();
+    }
+
     render() {
         const { keranjangs } = this.props;
 
@@ -124,6 +143,7 @@ export default class Hasil extends Component {
                             kurang={this.kurang}
                             changeHandler={this.changeHandler}
                             handleSubmit={this.handleSubmit}
+                            hapusPesanan={this.hapusPesanan}
                         />
                     </ListGroup>
                 }

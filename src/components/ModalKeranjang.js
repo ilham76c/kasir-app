@@ -4,7 +4,19 @@ import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { numberWithCommas } from '../utils/utils';
 
-const ModalKeranjang = ({showModal, handleClose, keranjangDetail, jumlah, keterangan, tambah, kurang, changeHandler, handleSubmit, totalHarga}) => {
+const ModalKeranjang = ({
+        showModal, 
+        handleClose, 
+        keranjangDetail, 
+        jumlah, 
+        keterangan, 
+        tambah, 
+        kurang, 
+        changeHandler, 
+        handleSubmit, 
+        totalHarga,
+        hapusPesanan
+    }) => {
     if (keranjangDetail) {    
         return (
             <Modal show={showModal} onHide={handleClose}>
@@ -52,7 +64,7 @@ const ModalKeranjang = ({showModal, handleClose, keranjangDetail, jumlah, ketera
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="danger" onClick={handleClose}>
+                    <Button variant="danger" onClick={() => hapusPesanan(keranjangDetail.id)}>
                         <FontAwesomeIcon icon={faTrash}/> Hapus Pesanan
                     </Button>
                 </Modal.Footer>
