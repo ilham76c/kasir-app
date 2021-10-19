@@ -68,35 +68,36 @@ export default class Hasil extends Component {
           }
         axios.put(`${API_URL}/keranjangs/${this.state.keranjangDetail.id}`, data)
             .then(res => {
-              swal({
-                title: "Update Pesanan!",
-                text: "Sukses update pesanan " + data.product.nama,
-                icon: "success",
-                button: false,
-                timer: 1500,
-              });
+                this.props.getListKeranjang();
+                swal({
+                    title: "Update Pesanan!",
+                    text: "Sukses update pesanan " + data.product.nama,
+                    icon: "success",
+                    button: false,
+                    timer: 1500,
+                });
             })
             .catch(error => {
-              console.log(error);
+                console.log(error);
             });
 
         this.handleClose();
     }
 
     hapusPesanan = (id) => {
-    
         axios.delete(`${API_URL}/keranjangs/${id}`)
             .then(res => {
-              swal({
-                title: "Hapus Pesanan!",
-                text: "Sukses hapus pesanan " + this.state.keranjangDetail.product.nama,
-                icon: "error",
-                button: false,
-                timer: 1500,
-              });
+                this.props.getListKeranjang();
+                swal({
+                    title: "Hapus Pesanan!",
+                    text: "Sukses hapus pesanan " + this.state.keranjangDetail.product.nama,
+                    icon: "error",
+                    button: false,
+                    timer: 1500,
+                });
             })
             .catch(error => {
-              console.log(error);
+                console.log(error);
             });
 
         this.handleClose();

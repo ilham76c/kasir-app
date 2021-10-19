@@ -22,15 +22,8 @@ export default class Home extends Component {
       .then(res => {
         const menus = res.data;
         this.setState({ menus });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
-    axios.get(`${API_URL}/keranjangs`)
-      .then(res => {
-        const keranjangs = res.data;
-        this.setState({ keranjangs });
+        
+        this.getListKeranjang();
       })
       .catch(error => {
         console.log(error);
@@ -49,6 +42,17 @@ export default class Home extends Component {
   //     });
   //   }
   // }
+
+  getListKeranjang = () => {
+    axios.get(`${API_URL}/keranjangs`)
+      .then(res => {
+        const keranjangs = res.data;
+        this.setState({ keranjangs });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   changeCategory = (value) => {
     this.setState({
@@ -78,6 +82,7 @@ export default class Home extends Component {
           }
           axios.post(`${API_URL}/keranjangs`, keranjang)
             .then(res => {
+              this.getListKeranjang();
               swal({
                 title: "Sukses",
                 text: keranjang.product.nama+" sukses masuk keranjang",
@@ -142,7 +147,11 @@ export default class Home extends Component {
                 ))}
               </Row>
             </Col>
-            <Hasil keranjangs={ keranjangs } {...this.props} />
+            <Hasil 
+              keranjangs={ keranjangs } 
+              {...this.props} 
+              getListKeranjang={ this.getListKeranjang }
+            />
           </Row>
         </Container>
       </div>
