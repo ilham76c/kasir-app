@@ -103,6 +103,7 @@ export default class Home extends Component {
 
           axios.put(`${API_URL}/keranjangs/${res.data[0].id}`, keranjang)
             .then(res => {
+              this.getListKeranjang();
               swal({
                 title: "Sukses",
                 text: keranjang.product.nama+" sukses masuk keranjang",
