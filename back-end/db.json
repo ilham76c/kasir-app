@@ -186,38 +186,20 @@
   "keranjangs": [
     {
       "jumlah": 1,
-      "total_harga": 10000,
+      "total_harga": 12000,
       "product": {
-        "id": 6,
-        "kode": "K-06",
-        "nama": "Bakso",
-        "harga": 10000,
+        "id": 3,
+        "kode": "K-03",
+        "nama": "Nasi Rames",
+        "harga": 12000,
         "is_ready": true,
-        "gambar": "bakso.jpg",
+        "gambar": "nasi-rames.jpg",
         "category": {
           "id": 1,
           "nama": "Makanan"
         }
       },
-      "keterangan": "Bakso Kosongan",
       "id": 1
-    },
-    {
-      "jumlah": 1,
-      "total_harga": 13000,
-      "product": {
-        "id": 5,
-        "kode": "K-05",
-        "nama": "Mie Goreng",
-        "harga": 13000,
-        "is_ready": true,
-        "gambar": "mie-goreng.jpg",
-        "category": {
-          "id": 1,
-          "nama": "Makanan"
-        }
-      },
-      "id": 2
     }
   ],
   "pesanans": [
